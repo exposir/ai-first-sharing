@@ -132,29 +132,21 @@
         </div>
       </div>
       <p class="animate-in" style="transition-delay: 320ms">
-        驾驭工程是基础设施工作，和应用代码无关。但它决定了应用代码是否可靠。
+        驾驭工程是基础设施工作，和应用代码无关，但它决定了应用代码是否可靠。《重构》作者 Martin Fowler 在同一时期独立得出了同样的结论。
       </p>
-      <blockquote class="animate-in" style="transition-delay: 400ms">
-        "CREAO
-        用自己的智能体重建了运行智能体的平台。如果这个产品能够构建自身，那它就是可行的。"
-      </blockquote>
-      <p class="animate-in" style="transition-delay: 480ms">
-        这个方向也获得了软件工程界的独立验证：Martin Fowler——《重构》作者，软件工程领域最具影响力的实践者之一——于同期在其网站专门撰文，从工程方法论角度系统阐述了驾驭工程的框架，将其纳入"探索生成式 AI"系列。
-      </p>
-      <h3 class="subsection-title animate-in" style="transition-delay: 560ms">
-        这套体系跑起来是什么样
+      <h3 class="subsection-title animate-in" style="transition-delay: 400ms">
+        这四件事不是各自独立的
       </h3>
-      <p class="animate-in" style="transition-delay: 620ms">
-        以 CREAO 为例，四件事"组装起来"之后，形成了一个每天自动运转的自愈循环：
+      <p class="animate-in" style="transition-delay: 480ms">
+        组合起来之后，会形成一个每天自动运转的循环。以文章中的团队为例：
       </p>
-      <ul class="content-list animate-in" style="transition-delay: 700ms">
-        <li><strong>自动巡检：</strong>每天 9:00，Claude 查询 CloudWatch，分析所有服务的错误模式，向团队发送执行摘要——无需任何人主动触发。</li>
-        <li><strong>自动分类：</strong>一小时后，AI 引擎聚类生产错误，按九个严重度维度打分，在 Linear 自动创建工单，每张附带样本日志、受影响用户、建议排查路径。</li>
-        <li><strong>自动去重：</strong>有开放工单覆盖相同错误则更新；已关闭问题重现时重新打开。</li>
-        <li><strong>自动收尾：</strong>工程师推修复、流水线验证、部署，部署后重新检验 CloudWatch——如原始错误已解决，工单自动关闭。</li>
+      <ul class="content-list animate-in" style="transition-delay: 560ms">
+        <li><strong>自动巡检：</strong>每天早上，AI 查询所有服务的错误日志，分析错误模式，向团队发送摘要——无需任何人主动触发。</li>
+        <li><strong>自动分类：</strong>AI 对生产错误按严重度打分，自动创建工单，每张附带日志样本、受影响范围和建议排查路径。已有工单覆盖相同错误则更新；已关闭的问题重现时自动重新打开。</li>
+        <li><strong>自动收尾：</strong>工程师推修复，流水线验证并部署，部署后系统重新检查——如果问题已解决，工单自动关闭。</li>
       </ul>
-      <blockquote class="animate-in" style="transition-delay: 800ms">
-        "AI 提 PR，人类只需要审查是否有风险。"
+      <blockquote class="animate-in" style="transition-delay: 640ms">
+        人在整个循环里只做一件事——判断风险。
       </blockquote>
     </section>
 
@@ -190,7 +182,7 @@
       </p>
       <p class="animate-in" style="transition-delay: 400ms">
         这些本来就是前端工程化的好实践，现在多了一个新的理由：<strong
-          >让 AI 能更好地帮你干活。</strong
+          >让 AI 能更好地帮我们干活。</strong
         >
       </p>
 
@@ -367,90 +359,25 @@
 
     <!-- 分隔屏 4 -->
     <section class="divider-screen" id="divider-4">
-      <h2 class="main-title">工程师<br />的出路</h2>
-      <p class="sub-title">适应速度、角色重构与行动路线</p>
+      <h2 class="main-title">价值迁移</h2>
+      <p class="sub-title">什么不会被替代</p>
     </section>
 
     <!-- 内容区 5 -->
     <section class="content-section" id="section-5">
       <h2 class="section-title animate-in" style="transition-delay: 0ms">
-        初级工程师，比高级工程师更快
+        什么不会被替代
       </h2>
       <p class="animate-in" style="transition-delay: 80ms">
-        这是文章作者观察到的一个规律。
+        文章的判断：快速写代码的能力在贬值，但架构判断、系统性思维、对"好的"的识别力——这些在 AI 时代反而更稀缺，因为 AI 最难替代的恰恰是这些判断力。
       </p>
-      <p class="animate-in" style="transition-delay: 160ms">
-        先说一件不会变的事：架构判断、系统性思维、对"好的"的识别力——这些依然是有经验的工程师的优势，而且在
-        AI
-        时代会越来越稀缺，因为 AI 最难替代的恰恰是这些判断力。
-      </p>
-      <p class="animate-in" style="transition-delay: 240ms">
-        但在"适应新工作方式"这件事上，有一个反直觉的现象：
-      </p>
-      <div class="card-grid-2 animate-in" style="transition-delay: 320ms">
-        <div class="card card--junior">
-          <div class="card-header" aria-hidden="true"></div>
-          <p class="card-title">初级工程师</p>
-          <ul class="card-list">
-            <li>没有历史包袱和固有习惯</li>
-            <li>工具放大了他们的能力</li>
-            <li>感受到的是赋能</li>
-          </ul>
-        </div>
-        <div class="card card--senior">
-          <div class="card-header" aria-hidden="true"></div>
-          <p class="card-title">高级工程师</p>
-          <ul class="card-list">
-            <li>多年建立的工作方式需要重新适应</li>
-            <li>"快速写出好代码"的优势被压缩</li>
-            <li>心理调整的成本更高</li>
-          </ul>
-        </div>
-      </div>
-      <p class="animate-in" style="transition-delay: 400ms">
-        这不是说经验贬值了。而是说：如果一个人的自我认知建立在"我能快速写出别人写不出的代码"上，这个基础正在动摇——需要迁移到新的优势上去。
-      </p>
-      <h3 class="subsection-title animate-in" style="transition-delay: 480ms">
-        角色在被重新定义
-      </h3>
-      <p class="animate-in" style="transition-delay: 540ms">
-        文章还从组织层面给出了另一个框架——不是"工程师消失"，而是分工重构：
-      </p>
-      <div class="card-grid-2 animate-in" style="transition-delay: 620ms">
-        <div class="card card--left">
-          <div class="card-header" aria-hidden="true"></div>
-          <p class="card-title">架构师（少数）</p>
-          <ul class="card-list">
-            <li>设计给 AI 的标准操作流程</li>
-            <li>构建测试基础设施和分类系统</li>
-            <li>决定架构边界和系统约束</li>
-            <li>质疑 AI，找出方案的漏洞</li>
-          </ul>
-        </div>
-        <div class="card card--right">
-          <div class="card-header" aria-hidden="true"></div>
-          <p class="card-title">操作员（多数）</p>
-          <ul class="card-list">
-            <li>接收 AI 分配的任务</li>
-            <li>调查、验证、批准修复</li>
-            <li>PR 审查聚焦风险，而非逐行正确性</li>
-            <li>Bug 调查、UI 优化、验证</li>
-          </ul>
-        </div>
-      </div>
-      <h3 class="subsection-title animate-in" style="transition-delay: 700ms">
-        作者的路线建议
-      </h3>
-      <ul class="content-list animate-in" style="transition-delay: 780ms">
-        <li>如果产品管理流程比构建时间还长，从那里开始改</li>
-        <li>在扩大智能体规模之前，先把测试驾驭系统建好</li>
-        <li>从一个架构师开始，不要一下子推全团队</li>
-        <li>预期会有阻力——转型期的焦虑是真实的</li>
-      </ul>
-      <blockquote class="animate-in" style="transition-delay: 860ms">
+      <blockquote class="animate-in" style="transition-delay: 160ms">
         "批判 AI 的能力将比生产代码的能力更有价值。"
         <cite>— 文章作者（物理学博士）</cite>
       </blockquote>
+      <p class="hint-text animate-in" style="transition-delay: 320ms">
+        文章里还有更多关于角色分工和转型路径的讨论，感兴趣可以看原文。
+      </p>
     </section>
 
     <!-- 分隔屏 5 -->
