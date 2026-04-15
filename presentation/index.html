@@ -455,27 +455,43 @@
 
     <!-- 分隔屏 5 -->
     <section class="divider-screen" id="divider-5">
-      <h2 class="main-title">聊聊吧</h2>
-      <p class="sub-title">没有标准答案</p>
+      <h2 class="main-title">带走<br />这些</h2>
+      <p class="sub-title">两件能做的事，一个值得关注的方向</p>
     </section>
 
     <!-- 内容区 6 -->
     <section class="content-section" id="section-6">
       <h2 class="section-title animate-in" style="transition-delay: 0ms">
-        两个问题
+        两件能做的事，一个值得关注的方向
       </h2>
-      <p class="question-primary animate-in" style="transition-delay: 80ms">
-        我们现在用 AI 做前端，最顺的是什么？最卡的是什么？
+      <p class="animate-in" style="transition-delay: 60ms">
+        背后有一个共同的逻辑：<strong>AI 并不是不懂代码——它缺的是我们团队的具体上下文。</strong>没有我们的设计约定、组件 API 和命名规则，它从训练数据里取平均值：合理，但不是我们的系统。
       </p>
-      <p class="hint-text animate-in" style="transition-delay: 160ms">
-        每个人都有自己的经验，不用等别人说。
-      </p>
-      <hr class="animate-in" style="transition-delay: 240ms" />
-      <p class="question-primary animate-in" style="transition-delay: 320ms">
-        如果要让 AI 更好地帮我们干活，我们最需要改变的一件事是什么？
-      </p>
-      <p class="hint-text animate-in" style="transition-delay: 400ms">
-        可以是工具、流程、代码结构，或者别的什么。
+      <div class="card-grid-3 animate-in" style="transition-delay: 140ms">
+        <div class="card">
+          <p class="card-title">① 写一份 AGENTS.md</p>
+          <p class="card-body">
+            在项目根目录创建 <code>AGENTS.md</code>，写我们团队自己的选择：用哪些组件、禁用硬编码颜色、文件结构、命名约定。不是行业最佳实践——是我们的。<br><br>这是 2026 年的跨工具标准（Linux 基金会），Cursor、Copilot、Codex 都原生读这个文件。用 Claude Code 的话 symlink 一份即可。一份文件，所有工具生效。下周就能开始。
+          </p>
+        </div>
+        <div class="card">
+          <p class="card-title">② 注意"值漂移"这个问题</p>
+          <p class="card-body">
+            AI 生成前端代码有一种特有的质量问题——<strong>值漂移</strong>：代码能跑、类型检查通过，但用了 <code>#2563EB</code> 而不是 <code>var(--color-primary-600)</code>，或者 <code>p-[13px]</code> 而不是设计系统间距。<br><br>截图 diff 通常发现不了，但会持续累积。语义化 token 命名 + lint 规则检测任意值，是前端 AI 工作流特有的质量门禁。
+          </p>
+        </div>
+        <div class="card">
+          <p class="card-title">③ Stories 和测试：给 AI 定义"什么叫对"</p>
+          <p class="card-body">
+            Stories 枚举了每个组件的正确状态——这本身就是"什么叫对"的定义。Storybook 今年四月刚发布了 MCP 支持，AI 可以查询 Stories 来复用现有组件并自我纠错。<br><br>这是文章"测试驾驭系统"在前端的具体形态。目前 React 项目可试，其他框架还在路上。
+          </p>
+        </div>
+      </div>
+      <blockquote class="animate-in" style="transition-delay: 220ms">
+        第一件和第二件下周就能开始；第三件是方向，值得提前了解。
+      </blockquote>
+      <p class="hint-text animate-in" style="transition-delay: 300ms">
+        如果有经验或卡点，欢迎聊聊。
       </p>
       <div class="discussion-spacer" aria-hidden="true"></div>
     </section>
