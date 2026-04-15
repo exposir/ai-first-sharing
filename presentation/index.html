@@ -39,6 +39,9 @@
       <blockquote class="animate-in" style="transition-delay: 160ms">
         "他们只是把 AI 加进了循环，而没有重新设计这个循环。"
       </blockquote>
+      <p class="animate-in" style="transition-delay: 200ms">
+        BCG 2026 年调研印证了这一点：近三分之一的公司去年将超过 1.7% 的营收投入 AI，但 <strong>60% 的企业报告收益极小甚至为零</strong>——问题不在技术，在于工作方式没有真正改变。
+      </p>
       <h3 class="subsection-title animate-in" style="transition-delay: 240ms">
         有什么区别？
       </h3>
@@ -138,6 +141,21 @@
       <p class="animate-in" style="transition-delay: 480ms">
         这个方向也获得了软件工程界的独立验证：Martin Fowler——《重构》作者，软件工程领域最具影响力的实践者之一——于同期在其网站专门撰文，从工程方法论角度系统阐述了驾驭工程的框架，将其纳入"探索生成式 AI"系列。
       </p>
+      <h3 class="subsection-title animate-in" style="transition-delay: 560ms">
+        这套体系跑起来是什么样
+      </h3>
+      <p class="animate-in" style="transition-delay: 620ms">
+        以 CREAO 为例，四件事"组装起来"之后，形成了一个每天自动运转的自愈循环：
+      </p>
+      <ul class="content-list animate-in" style="transition-delay: 700ms">
+        <li><strong>自动巡检：</strong>每天 9:00，Claude 查询 CloudWatch，分析所有服务的错误模式，向团队发送执行摘要——无需任何人主动触发。</li>
+        <li><strong>自动分类：</strong>一小时后，AI 引擎聚类生产错误，按九个严重度维度打分，在 Linear 自动创建工单，每张附带样本日志、受影响用户、建议排查路径。</li>
+        <li><strong>自动去重：</strong>有开放工单覆盖相同错误则更新；已关闭问题重现时重新打开。</li>
+        <li><strong>自动收尾：</strong>工程师推修复、流水线验证、部署，部署后重新检验 CloudWatch——如原始错误已解决，工单自动关闭。</li>
+      </ul>
+      <blockquote class="animate-in" style="transition-delay: 800ms">
+        "AI 提 PR，人类只需要审查是否有风险。"
+      </blockquote>
     </section>
 
     <!-- 分隔屏 2 -->
@@ -195,7 +213,7 @@
         我们的价值往哪里迁移？
       </h3>
       <p class="animate-in" style="transition-delay: 880ms">
-        文章的判断是：快速写代码的能力每个月都在贬值，评估、批判和引导 AI 的能力则在升值。
+        文章的判断是：快速写代码的能力每个月都在贬值，评估、批判和引导 AI 的能力则在升值。从个人技能角度，具体到前端有三个方向：
       </p>
       <div class="card-grid-3 animate-in" style="transition-delay: 960ms">
         <div class="card">
@@ -336,12 +354,21 @@
       <blockquote class="animate-in" style="transition-delay: 1280ms">
         这不是"技术不够"的问题，而是验证标准本身就是模糊的、主观的、依赖上下文的。
       </blockquote>
+      <h3 class="subsection-title animate-in" style="transition-delay: 1360ms">
+        方向正在出现
+      </h3>
+      <p class="animate-in" style="transition-delay: 1440ms">
+        这个问题有人在认真解决。<strong>TestSprite</strong> 是目前比较值得关注的方向：AI 自主生成端到端测试用例，理解组件状态和用户意图（不是像素比对），覆盖视觉回归、响应式断点、无障碍检测，在 CI/CD 中运行并自动修复脆弱选择器，可通过 MCP 集成进 Cursor 工作流。<strong>Chromatic</strong> 和 <strong>Percy</strong> 也在朝 AI 感知差异的方向演进，减少误报、增加语义理解。
+      </p>
+      <p class="animate-in" style="transition-delay: 1520ms">
+        但这些工具仍处于早期：解决的是"像素变了"的检测问题，还没有完全解决"这样对不对"的判断问题。<strong>人工审查短期内仍不可替代</strong>，只是可以更精准地知道什么时候需要人眼介入。
+      </p>
     </section>
 
     <!-- 分隔屏 4 -->
     <section class="divider-screen" id="divider-4">
-      <h2 class="main-title">一个<br />反直觉</h2>
-      <p class="sub-title">谁适应 AI 工作方式最快？</p>
+      <h2 class="main-title">工程师<br />的出路</h2>
+      <p class="sub-title">适应速度、角色重构与行动路线</p>
     </section>
 
     <!-- 内容区 5 -->
@@ -383,7 +410,44 @@
       <p class="animate-in" style="transition-delay: 400ms">
         这不是说经验贬值了。而是说：如果一个人的自我认知建立在"我能快速写出别人写不出的代码"上，这个基础正在动摇——需要迁移到新的优势上去。
       </p>
-      <blockquote class="animate-in" style="transition-delay: 480ms">
+      <h3 class="subsection-title animate-in" style="transition-delay: 480ms">
+        角色在被重新定义
+      </h3>
+      <p class="animate-in" style="transition-delay: 540ms">
+        文章还从组织层面给出了另一个框架——不是"工程师消失"，而是分工重构：
+      </p>
+      <div class="card-grid-2 animate-in" style="transition-delay: 620ms">
+        <div class="card card--left">
+          <div class="card-header" aria-hidden="true"></div>
+          <p class="card-title">架构师（少数）</p>
+          <ul class="card-list">
+            <li>设计给 AI 的标准操作流程</li>
+            <li>构建测试基础设施和分类系统</li>
+            <li>决定架构边界和系统约束</li>
+            <li>质疑 AI，找出方案的漏洞</li>
+          </ul>
+        </div>
+        <div class="card card--right">
+          <div class="card-header" aria-hidden="true"></div>
+          <p class="card-title">操作员（多数）</p>
+          <ul class="card-list">
+            <li>接收 AI 分配的任务</li>
+            <li>调查、验证、批准修复</li>
+            <li>PR 审查聚焦风险，而非逐行正确性</li>
+            <li>Bug 调查、UI 优化、验证</li>
+          </ul>
+        </div>
+      </div>
+      <h3 class="subsection-title animate-in" style="transition-delay: 700ms">
+        作者的路线建议
+      </h3>
+      <ul class="content-list animate-in" style="transition-delay: 780ms">
+        <li>如果产品管理流程比构建时间还长，从那里开始改</li>
+        <li>在扩大智能体规模之前，先把测试驾驭系统建好</li>
+        <li>从一个架构师开始，不要一下子推全团队</li>
+        <li>预期会有阻力——转型期的焦虑是真实的</li>
+      </ul>
+      <blockquote class="animate-in" style="transition-delay: 860ms">
         "批判 AI 的能力将比生产代码的能力更有价值。"
         <cite>— 文章作者（物理学博士）</cite>
       </blockquote>
