@@ -1,3 +1,13 @@
+/* ===== Links ===== */
+a {
+  color: #f97316;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 /* ===== Reset & Base ===== */
 *,
 *::before,
@@ -279,7 +289,7 @@ td strong {
 
 .cover-footer {
   position: absolute;
-  bottom: 40px;
+  bottom: 16px;
   left: 0;
   right: 0;
   text-align: center;
@@ -289,7 +299,7 @@ td strong {
 
 .scroll-hint {
   position: absolute;
-  bottom: 72px;
+  bottom: 80px;
   left: 50%;
   font-size: 20px;
   color: #444444;
