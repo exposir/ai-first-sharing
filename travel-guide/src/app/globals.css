@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sea: #1a73e8;
+  --sea-light: #e8f0fe;
+  --sea-dark: #0d47a1;
+  --orange: #ff6d00;
+  --orange-light: #fff3e0;
+  --red: #d32f2f;
+  --red-light: #ffebee;
+  --green: #2e7d32;
+  --green-light: #e8f5e9;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+[id] {
+  scroll-margin-top: 60px;
+}
+
+@layer components {
+  .alert-box {
+    @apply rounded-xl p-5 mb-4;
+  }
+  .alert-red {
+    @apply bg-red-50 border-l-4 border-red-600;
+  }
+  .alert-orange {
+    @apply bg-orange-50 border-l-4 border-orange-500;
+  }
+  .alert-green {
+    @apply bg-green-50 border-l-4 border-green-600;
+  }
+  .alert-blue {
+    @apply bg-blue-50 border-l-4 border-blue-600;
+  }
+}
