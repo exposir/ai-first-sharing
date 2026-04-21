@@ -3,39 +3,154 @@
 @tailwind utilities;
 
 :root {
-  --sea: #1a73e8;
-  --sea-light: #e8f0fe;
-  --sea-dark: #0d47a1;
-  --orange: #ff6d00;
-  --orange-light: #fff3e0;
-  --red: #d32f2f;
-  --red-light: #ffebee;
-  --green: #2e7d32;
-  --green-light: #e8f5e9;
+  --color-claude-dark: 20 20 19;
+  --color-claude-light: 250 249 245;
+  --color-claude-mid: 176 174 165;
+  --color-claude-light-gray: 232 230 220;
+  --color-claude-orange: 217 119 87;
+  --color-claude-blue: 106 155 204;
+  --color-claude-green: 120 140 93;
+  --color-claude-warm: 240 238 232;
+}
+
+.dark {
+  --color-claude-dark: 245 244 239;
+  --color-claude-light: 18 18 17;
+  --color-claude-mid: 160 158 149;
+  --color-claude-light-gray: 40 39 37;
+  --color-claude-orange: 232 137 96;
+  --color-claude-blue: 120 168 216;
+  --color-claude-green: 140 160 110;
+  --color-claude-warm: 28 27 25;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-[id] {
-  scroll-margin-top: 60px;
+#quick-links {
+  scroll-margin-top: 80px;
+}
+
+/* Page transition animation */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: pageEnter 0.4s ease-out;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: rgba(217, 119, 87, 0.25);
+}
+
+:not(.dark) ::selection {
+  color: #141413;
+}
+
+.dark ::selection {
+  color: #f5f4ef;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #b0aea5;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8a8880;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #4a4945;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #5a5955;
 }
 
 @layer components {
-  .alert-box {
-    @apply rounded-xl p-5 mb-4;
+  .section-heading {
+    @apply text-2xl font-semibold text-claude-dark tracking-tight;
   }
-  .alert-red {
-    @apply bg-red-50 border-l-4 border-red-600;
+  .section-sub {
+    @apply text-claude-mid dark:text-white/60 mt-1.5 text-[0.95rem];
+  }
+  .card {
+    @apply bg-white dark:bg-[#222120] rounded-2xl p-6 border border-claude-light-gray/60 dark:border-white/[0.06] transition-all duration-200;
+  }
+  .card-hover {
+    @apply card hover:shadow-[0_4px_20px_rgba(20,20,19,0.08)] dark:hover:shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:-translate-y-0.5;
+  }
+  .accent-bar {
+    @apply w-8 h-[3px] rounded-full bg-claude-orange;
+  }
+  .tag {
+    @apply px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  .alert-box {
+    @apply rounded-2xl p-5 mb-4;
   }
   .alert-orange {
-    @apply bg-orange-50 border-l-4 border-orange-500;
+    background-color: rgba(217, 119, 87, 0.08);
+    border-left: 3px solid #d97757;
+    @apply dark:bg-claude-orange/[0.06] rounded-2xl p-5 mb-4;
+  }
+  .dark .alert-orange {
+    border-left-color: #e88b60;
+  }
+  .alert-red {
+    @apply bg-red-50 dark:bg-red-900/10 border-l-[3px] border-red-400 dark:border-red-500/60 rounded-2xl p-5 mb-4;
   }
   .alert-green {
-    @apply bg-green-50 border-l-4 border-green-600;
+    background-color: rgba(120, 140, 93, 0.08);
+    border-left: 3px solid #788c5d;
+    @apply dark:bg-claude-green/[0.06] rounded-2xl p-5 mb-4;
+  }
+  .dark .alert-green {
+    border-left-color: #8ca06e;
   }
   .alert-blue {
-    @apply bg-blue-50 border-l-4 border-blue-600;
+    background-color: rgba(106, 155, 204, 0.08);
+    border-left: 3px solid #6a9bcc;
+    @apply dark:bg-claude-blue/[0.06] rounded-2xl p-5 mb-4;
+  }
+  .dark .alert-blue {
+    border-left-color: #78a8d8;
+  }
+
+  /* Accordion */
+  .accordion-trigger {
+    @apply w-full flex items-center justify-between py-4 text-left font-medium text-claude-dark hover:text-claude-orange transition-colors;
+  }
+  .accordion-content {
+    @apply overflow-hidden transition-all duration-300 ease-in-out;
+  }
+
+  /* Leaflet divIcon 样式覆盖 — 去掉默认白色背景和边框 */
+  .leaflet-div-icon {
+    background: transparent !important;
+    border: none !important;
+  }
+  .custom-marker {
+    background: transparent !important;
+    border: none !important;
   }
 }

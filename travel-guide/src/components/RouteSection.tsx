@@ -1,70 +1,138 @@
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { itinerary } from "@/data/travel";
+import { FadeIn } from "./motion";
 
-export default function RouteSection() {
+type Event = {
+  time: string;
+  title: string;
+  desc: string;
+  highlight: boolean;
+};
+
+type DayRoute = {
+  day: number;
+  date: string;
+  weekday: string;
+  title: string;
+  distance: string;
+  duration: string;
+  accommodation: string;
+  isReturn: boolean;
+  events: Event[];
+};
+
+function AccordionItem({ day, defaultOpen = false }: { day: DayRoute; defaultOpen?: boolean }) {
+  const [open, setOpen] = useState(defaultOpen);
+
   return (
-    <section id="route" className="py-12">
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold flex items-center gap-2">
-          <span className="w-9 h-9 rounded-lg bg-green-50 text-green-700 flex items-center justify-center text-lg shrink-0">🗺️</span>
-          路线规划
-        </h2>
-        <p className="text-gray-600 mt-2 text-[0.95rem]">全程路线图 + 每日详细安排</p>
-      </div>
+    <FadeIn className="card overflow-hidden">
+      {/* Header */}
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center gap-4 text-left py-4 px-5 group"
+      >
+        <motion.span
+          className={`w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold shrink-0 ${
+            day.isReturn
+              ? "bg-red-50 dark:bg-red-900/20 text-red-500 dark:text-red-400"
+               : day.day <= 2
+               ? "bg-claude-orange/10 text-claude-orange"
+               : "bg-claude-warm dark:bg-white/[0.06] text-claude-mid dark:text-white/60"
+          }`}
+          whileHover={{ scale: 1.08, rotate: open ? 0 : 3 }}
+          transition={{ duration: 0.15 }}
+        >
+          D{day.day}
+        </motion.span>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 flex-wrap">
+            <h3 className="text-[0.95rem] font-medium text-claude-dark truncate">{day.title}</h3>
+            {day.isReturn && (
+              <span className="shrink-0 tag bg-red-50 dark:bg-red-900/20 text-red-500 dark:text-red-400 text-[0.65rem]">返程</span>
+            )}
+            {day.events.some((e) => e.highlight) && !day.isReturn && (
+              <span className="shrink-0 tag bg-claude-orange/10 text-claude-orange text-[0.65rem]">重点</span>
+            )}
+          </div>
+          <p className="text-xs text-claude-mid dark:text-white/50 mt-0.5">
+            {day.date} {day.weekday} · {day.distance} · {day.duration}
+          </p>
+        </div>
+        <motion.span
+          className="shrink-0 text-claude-mid"
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </motion.span>
+      </button>
 
-      {/* Route Map */}
-      <div className="bg-white rounded-xl p-6 shadow-sm mb-6 overflow-x-auto">
-        <h3 className="text-base font-semibold mb-4">全程路线示意图</h3>
-        <div className="flex items-center gap-0 min-w-[700px] py-3">
-          {[
-            { name: "杭州", sub: "出发地", color: "bg-blue-600", size: "w-5 h-5", lineColor: "bg-green-600", lineLabel: "5h / G15较通畅" },
-            { name: "连云港", sub: "中途住一晚", color: "bg-orange-500", size: "w-4 h-4", lineColor: "bg-orange-400", lineLabel: "5h / 临近威海略堵" },
-            { name: "威海", sub: "玩2天", color: "bg-green-600", size: "w-5 h-5", lineColor: "bg-orange-400", lineLabel: "3.5h / 龙青高速" },
-            { name: "青岛", sub: "玩2天", color: "bg-green-600", size: "w-5 h-5", lineColor: "bg-red-500", lineLabel: "10-12h / 返程必堵" },
-            { name: "杭州", sub: "到家", color: "bg-blue-600", size: "w-5 h-5", lineColor: "", lineLabel: "" },
-          ].map((node, i) => (
-            <div key={i} className="flex items-center flex-1 min-w-0">
-              <div className="text-center shrink-0">
-                <div className={`${node.color} ${node.size} rounded-full mx-auto mb-1.5`} />
-                <div className="text-sm font-bold">{node.name}</div>
-                <div className="text-xs text-gray-500">{node.sub}</div>
-              </div>
-              {i < 4 && (
-                <div className="flex-1 relative mx-1">
-                  <div className={`${node.lineColor} h-1 rounded min-w-[40px] mb-5`} />
-                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 text-xs text-gray-500 whitespace-nowrap">{node.lineLabel}</div>
+      {/* Content with AnimatePresence */}
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            <div className="px-5 pb-5 border-t border-claude-light-gray/25 pt-4 space-y-4">
+              {day.events.map((event, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.06, duration: 0.3 }}
+                  className="flex gap-3"
+                >
+                  <div className="flex flex-col items-center">
+                    <span className={`text-xs font-medium ${event.highlight ? "text-claude-orange" : "text-claude-mid/60 dark:text-white/35"}`}>
+                      {event.time}
+                    </span>
+                  </div>
+                  <div className="flex-1 pb-3 border-b border-claude-light-gray/15 last:border-0">
+                    <h4 className={`text-sm mb-1 ${event.highlight ? "font-medium text-claude-dark" : "text-claude-dark/90"}`}>
+                      {event.title}
+                    </h4>
+                    <p className="text-sm text-claude-mid dark:text-white/60 font-serif leading-relaxed whitespace-pre-line">{event.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+              {day.accommodation !== "—" && (
+                <div className="flex items-center gap-2 text-sm text-claude-dark/70 bg-claude-warm/60 dark:bg-white/[0.04] px-3 py-2 rounded-lg">
+                  <span>🏨</span>
+                  <span>住：{day.accommodation}</span>
                 </div>
               )}
             </div>
-          ))}
-        </div>
-        <p className="text-center text-xs text-gray-500 mt-2">← 左右滑动查看完整路线 →</p>
-      </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </FadeIn>
+  );
+}
 
-      {/* Daily Timeline */}
-      {itinerary.map((day) => (
-        <div key={day.day} className="mb-8">
-          <div className={`rounded-xl px-5 py-4 mb-5 flex justify-between items-center ${day.isReturn ? "bg-gradient-to-r from-red-700 to-orange-500" : "bg-gradient-to-r from-blue-600 to-blue-800"} text-white`}>
-            <h3 className="text-lg font-semibold">Day {day.day} · {day.date} {day.weekday}</h3>
-            <div className="text-right text-xs opacity-85">
-              <div>{day.title}</div>
-              <div>{day.distance} / {day.duration}</div>
-            </div>
-          </div>
-          <div className="relative pl-9">
-            <div className="absolute left-[13px] top-2 bottom-2 w-[3px] bg-gradient-to-b from-blue-500 to-orange-400 rounded" />
-            {day.events.map((event, ei) => (
-              <div key={ei} className="relative mb-5 last:mb-0">
-                <div className={`absolute -left-[28px] top-2 w-[13px] h-[13px] rounded-full border-[3px] z-10 ${event.highlight ? "border-orange-500 bg-orange-500" : "border-blue-500 bg-white"}`} />
-                <div className="text-xs font-bold text-blue-600 mb-1">{event.time}</div>
-                <div className="bg-white rounded-xl p-4 shadow-sm">
-                  <h4 className="text-sm font-semibold mb-1">{event.title}</h4>
-                  <p className="text-xs text-gray-600 whitespace-pre-line">{event.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+export function RouteSection() {
+  return (
+    <section id="route" className="py-14">
+      <FadeIn>
+        <div className="mb-8">
+          <div className="accent-bar mb-4" />
+          <h2 className="section-heading">详细路线</h2>
+          <p className="section-sub">6天行程，每天怎么走、注意什么</p>
         </div>
-      ))}
+      </FadeIn>
+
+      <div className="space-y-3">
+        {(itinerary as DayRoute[]).map((day, idx) => (
+          <AccordionItem key={day.day} day={day} defaultOpen={idx < 2} />
+        ))}
+      </div>
     </section>
   );
 }

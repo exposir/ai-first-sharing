@@ -1,32 +1,21 @@
+import type { Metadata } from "next";
 import Hero from "@/components/Hero";
-import Navbar from "@/components/Navbar";
-import OverviewSection from "@/components/OverviewSection";
-import RouteSection from "@/components/RouteSection";
-import TrafficSection from "@/components/TrafficSection";
-import { WeihaiSection, QingdaoSection } from "@/components/SpotCard";
-import CostSection from "@/components/CostSection";
-import TipsSection from "@/components/TipsSection";
-import PackingSection from "@/components/PackingSection";
+import { OverviewSection } from "@/components/OverviewSection";
+import QuickLinks from "./quick-links";
+
+export const metadata: Metadata = {
+  title: "五一自驾 · 杭州出发 · 威海+青岛攻略",
+  description: "五一假期杭州自驾威海青岛详细旅游攻略，包含路线规划、避堵方案、景点推荐、费用预算",
+};
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Navbar />
-      <main className="max-w-5xl mx-auto px-5">
+      <main className="page-enter max-w-4xl mx-auto px-5 md:px-8 pt-4">
         <OverviewSection />
-        <RouteSection />
-        <TrafficSection />
-        <WeihaiSection />
-        <QingdaoSection />
-        <CostSection />
-        <TipsSection />
-        <PackingSection />
+        <QuickLinks />
       </main>
-      <footer className="bg-gray-900 text-gray-500 text-center py-8 text-sm">
-        <p>五一自驾攻略 · 杭州出发 · 威海+青岛</p>
-        <p className="text-xs mt-2">路况信息可能随实际变化，出行前请查看导航实时路况</p>
-      </footer>
     </>
   );
 }
